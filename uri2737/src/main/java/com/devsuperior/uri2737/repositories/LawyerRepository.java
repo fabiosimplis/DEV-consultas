@@ -20,4 +20,6 @@ public interface LawyerRepository extends JpaRepository<Lawyer, Long> {
                     "(SELECT 'Average', ROUND(AVG(customers_number), 0) FROM lawyers)")
     List<LawyerMinProjection> findMaxAndMinAndAverageSQL();
 
+    //Não há operação de União usando JPQL, porém pode haver forma equivalente.
+
 }
