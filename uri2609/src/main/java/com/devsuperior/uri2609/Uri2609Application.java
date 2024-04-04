@@ -24,11 +24,20 @@ public class Uri2609Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<CategorySumProjection> groupSumList = repository.groupQuantityByCategory();
+		List<CategorySumProjection> groupSumList = repository.groupQuantityByCategorySQL();
 		List<CategorySumDTO> categorySumList = groupSumList.stream().map(CategorySumDTO::new).collect(Collectors.toList());
 
 		System.out.println("\n*** SQL ***");
 		for (CategorySumDTO cDto : categorySumList){
+			System.out.println(cDto);
+		}
+
+		System.out.println("\n\n");
+
+		List<CategorySumDTO> categorySumListJPQL = repository.groupQuantityByCategoryJPQL();
+
+		System.out.println("\n*** JPQL ***");
+		for (CategorySumDTO cDto : categorySumListJPQL){
 			System.out.println(cDto);
 		}
 	}
